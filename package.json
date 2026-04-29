@@ -7,11 +7,19 @@
     "start": "npx serve .",
     "dev": "vercel dev"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  },
   "devDependencies": {
     "vercel": "^32.0.0"
   },
-  "keywords": ["ai", "education", "math", "science", "chatbot"],
+  "keywords": [
+    "ai",
+    "education",
+    "math",
+    "science",
+    "chatbot"
+  ],
   "author": "",
   "license": "MIT"
 }

@@ -174,13 +174,32 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.menuBtn.addEventListener('click', () => elements.sidebar.classList.add('open'));
         elements.closeSidebarBtn.addEventListener('click', () => elements.sidebar.classList.remove('open'));
         
-        // App Launch
+        // App Launch via Hash Routing
         const launchApp = () => {
-            elements.landingPage.classList.remove('active');
-            elements.appContainer.classList.remove('hidden');
+            window.location.hash = 'chat';
         };
         elements.launchAppNavBtn.addEventListener('click', launchApp);
         elements.launchAppHeroBtn.addEventListener('click', launchApp);
+
+        // Handle Back/Forward buttons (Browser History)
+        window.addEventListener('hashchange', handleHashRouting);
+        
+        // Execute immediately to handle direct links to /#chat
+        handleHashRouting();
+
+        function handleHashRouting() {
+            if (window.location.hash === '#chat') {
+                elements.landingPage.classList.remove('active');
+                elements.appContainer.classList.remove('hidden');
+            } else {
+                elements.landingPage.classList.add('active');
+                elements.appContainer.classList.add('hidden');
+                
+                if (window.innerWidth <= 768) {
+                    elements.sidebar.classList.remove('open');
+                }
+            }
+        }
         
         // Input handling
         elements.userInput.addEventListener('input', () => {

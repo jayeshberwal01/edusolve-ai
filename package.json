@@ -1,0 +1,17 @@
+{
+  "name": "edusolve-ai",
+  "version": "1.0.0",
+  "description": "AI-powered educational web application for Mathematics and Science",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "vercel dev"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  },
+  "keywords": ["ai", "education", "math", "science", "chatbot"],
+  "author": "",
+  "license": "MIT"
+}

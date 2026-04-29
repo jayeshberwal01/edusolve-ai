@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSolve AI - Math & Science Tutor</title>
+    <meta name="description" content="EduSolve AI is an intelligent educational platform for Mathematics and Science. Learn concepts, solve problems, and ask doubts with an AI tutor.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- KaTeX CSS for Math Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- PDF.js for client-side PDF parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+
+    <!-- Marked for Markdown Parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- KaTeX Auto-render extension -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Config script must be loaded first -->
+    <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="app-container">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h2><span class="gradient-text">EduSolve AI</span></h2>
+                <button id="close-sidebar-btn" class="icon-btn mobile-only" aria-label="Close Sidebar">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            
+            <button id="new-chat-btn" class="primary-btn full-width">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                New Chat
+            </button>
+
+            <div class="history-container">
+                <h3>Recent Chats</h3>
+                <ul id="chat-history-list" class="history-list">
+                    <!-- History items will be injected here -->
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <button id="clear-history-btn" class="secondary-btn full-width mb-2">Clear History</button>
+                <button id="download-history-btn" class="secondary-btn full-width">Download Logs</button>
+                <div class="theme-toggle-container mt-3">
+                    <label class="theme-switch" aria-label="Toggle Dark/Light Mode">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="theme-label" id="theme-label-text">Dark Mode</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content area -->
+        <main id="main-content">
+            <!-- Navbar -->
+            <header class="navbar">
+                <div class="nav-left">
+                    <button id="menu-btn" class="icon-btn" aria-label="Open Sidebar">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
+                    <h1 class="nav-title mobile-only">EduSolve</h1>
+                </div>
+                
+                <div class="nav-center">
+                    <select id="subject-selector" aria-label="Select Subject" class="glass-select">
+                        <!-- Options injected via JS -->
+                    </select>
+                </div>
+                
+                <div class="nav-right">
+                    <button id="pdf-upload-btn" class="icon-btn tooltip-container" aria-label="Upload PDF">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        <span class="tooltip">Upload PDF</span>
+                    </button>
+                    <input type="file" id="pdf-input" accept="application/pdf" style="display: none;">
+                </div>
+            </header>
+
+            <!-- Landing Page View -->
+            <section id="landing-view" class="view-section active">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Master Math & Science with <span class="gradient-text">EduSolve AI</span></h1>
+                        <p class="hero-subtitle">Your personalized, intelligent tutor available 24/7. Ask questions, solve problems step-by-step, and upload study materials.</p>
+                        
+                        <div class="features-grid">
+                            <div class="feature-card glass-card">
+                                <h3>Step-by-Step Solutions</h3>
+                                <p>Get clear, detailed breakdowns of complex problems.</p>
+                            </div>
+                            <div class="feature-card glass-card">
+                                <h3>Upload PDFs</h3>
+                                <p>Chat with your textbooks and notes instantly.</p>
+                            </div>
+                            <div class="feature-card glass-card">
+                                <h3>Voice Enabled</h3>
+                                <p>Speak your doubts and listen to explanations.</p>
+                            </div>
+                        </div>
+
+                        <div class="suggested-prompts-container">
+                            <h3>Try asking:</h3>
+                            <div id="suggested-prompts-grid" class="prompts-grid">
+                                <!-- Suggested prompts injected here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat View -->
+            <section id="chat-view" class="view-section">
+                <div id="chat-box" class="chat-box">
+                    <!-- Chat messages will appear here -->
+                </div>
+            </section>
+
+            <!-- PDF Status Banner -->
+            <div id="pdf-status-banner" class="pdf-status hidden">
+                <div class="pdf-status-content">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span id="pdf-file-name">Document loaded.</span>
+                    <button id="clear-pdf-btn" class="icon-btn small" aria-label="Remove Document">
+                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <footer class="input-area glass-panel">
+                <div class="input-wrapper">
+                    <button id="mic-btn" class="icon-btn tooltip-container" aria-label="Voice Input">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                        <span class="tooltip">Voice Input</span>
+                    </button>
+                    
+                    <textarea id="user-input" placeholder="Message EduSolve AI... (Shift+Enter for newline)" rows="1"></textarea>
+                    
+                    <button id="send-btn" class="primary-btn icon-btn" aria-label="Send Message" disabled>
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+                <div class="input-footer-text">EduSolve AI can make mistakes. Verify important information.</div>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

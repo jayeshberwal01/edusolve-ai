@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Protect block math ($$ ... $$ and \[ ... \])
             let processedText = text.replace(/(\$\$|\\\[)([\s\S]*?)(\$\$|\\\])/g, (match, left, content, right) => {
-                const id = `___MATH_BLOCK_${mathIndex}___`;
+                const id = `@@@MATH_BLOCK_${mathIndex}@@@`;
                 mathBlocks.push({ id, content, isBlock: true });
                 mathIndex++;
                 return id;
@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Protect inline math ($ ... $ and \( ... \))
             // Only match if not preceded by a backslash, and don't match empty $$
             processedText = processedText.replace(/(?<!\\)(\$|\\\()([^\$\n]+?)(\$|\\\))/g, (match, left, content, right) => {
-                const id = `___MATH_INLINE_${mathIndex}___`;
+                const id = `@@@MATH_INLINE_${mathIndex}@@@`;
                 mathBlocks.push({ id, content, isBlock: false });
                 mathIndex++;
                 return id;

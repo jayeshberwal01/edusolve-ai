@@ -34,7 +34,76 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div id="app-container">
+    <!-- Full-Screen Beautiful Landing Page -->
+    <div id="landing-page" class="landing-page active">
+        <div class="bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        
+        <header class="landing-header">
+            <div class="logo">
+                <h2><span class="gradient-text">EduSolve AI</span></h2>
+            </div>
+            <nav class="landing-nav">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How it works</a>
+                <button id="launch-app-nav-btn" class="secondary-btn">Sign In</button>
+            </nav>
+        </header>
+
+        <main class="landing-main">
+            <section class="hero-section">
+                <div class="hero-badge">✨ The Future of Learning is Here</div>
+                <h1 class="hero-title">Master Math & Science with<br><span class="gradient-text">Intelligent AI Tutoring</span></h1>
+                <p class="hero-subtitle">Your personalized tutor available 24/7. Get step-by-step solutions, upload your textbooks, and conquer complex concepts instantly.</p>
+                <div class="hero-actions">
+                    <button id="launch-app-hero-btn" class="primary-btn large-btn">
+                        Start Chatting Now
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+            </section>
+
+            <section id="features" class="features-section">
+                <h2 class="section-title">Everything you need to succeed</h2>
+                <div class="premium-features-grid">
+                    <div class="premium-glass-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                        </div>
+                        <h3>Step-by-Step Solutions</h3>
+                        <p>We don't just give you the answer. We break down every mathematical and scientific problem into easy-to-understand steps.</p>
+                    </div>
+                    <div class="premium-glass-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        </div>
+                        <h3>Chat with Textbooks</h3>
+                        <p>Upload PDFs of your syllabus, notes, or books. The AI will instantly search your materials to answer specific queries.</p>
+                    </div>
+                    <div class="premium-glass-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                        </div>
+                        <h3>Voice Enabled & TTS</h3>
+                        <p>Speak your doubts out loud and listen to the AI's explanations. Perfect for auditory learners and multitasking.</p>
+                    </div>
+                    <div class="premium-glass-card">
+                        <div class="icon-wrapper">
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                        </div>
+                        <h3>Perfect Math Rendering</h3>
+                        <p>Complex calculus and algebra are rendered beautifully in high-definition LaTeX. Say goodbye to messy text formulas.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Main Chat App -->
+    <div id="app-container" class="hidden">
         <!-- Sidebar -->
         <aside id="sidebar" class="sidebar">
             <div class="sidebar-header">
@@ -44,13 +113,13 @@
                 </button>
             </div>
             
-            <button id="new-chat-btn" class="primary-btn full-width">
+            <button id="new-chat-btn" class="primary-btn full-width mb-3">
                 <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 New Chat
             </button>
 
             <div class="history-container">
-                <h3>Recent Chats</h3>
+                <h3>Recent Sessions</h3>
                 <ul id="chat-history-list" class="history-list">
                     <!-- History items will be injected here -->
                 </ul>
@@ -95,30 +164,14 @@
                 </div>
             </header>
 
-            <!-- Landing Page View -->
-            <section id="landing-view" class="view-section active">
+            <!-- Pre-Chat View (replaces old landing-view) -->
+            <section id="pre-chat-view" class="view-section active">
                 <div class="hero">
                     <div class="hero-content">
-                        <h1 class="hero-title">Master Math & Science with <span class="gradient-text">EduSolve AI</span></h1>
-                        <p class="hero-subtitle">Your personalized, intelligent tutor available 24/7. Ask questions, solve problems step-by-step, and upload study materials.</p>
+                        <div class="hero-badge small-badge">Ready to learn?</div>
+                        <h2 class="hero-title" style="font-size: 2.5rem; margin-bottom: 2rem;">How can I help you today?</h2>
                         
-                        <div class="features-grid">
-                            <div class="feature-card glass-card">
-                                <h3>Step-by-Step Solutions</h3>
-                                <p>Get clear, detailed breakdowns of complex problems.</p>
-                            </div>
-                            <div class="feature-card glass-card">
-                                <h3>Upload PDFs</h3>
-                                <p>Chat with your textbooks and notes instantly.</p>
-                            </div>
-                            <div class="feature-card glass-card">
-                                <h3>Voice Enabled</h3>
-                                <p>Speak your doubts and listen to explanations.</p>
-                            </div>
-                        </div>
-
                         <div class="suggested-prompts-container">
-                            <h3>Try asking:</h3>
                             <div id="suggested-prompts-grid" class="prompts-grid">
                                 <!-- Suggested prompts injected here -->
                             </div>

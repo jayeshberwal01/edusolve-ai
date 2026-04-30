@@ -61,6 +61,7 @@ body {
     color: var(--text-primary);
     line-height: 1.5;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     transition: background-color var(--transition), color var(--transition);
 }
@@ -86,6 +87,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; line-height: 1.2; }
 #app-container {
     display: flex;
     height: 100vh;
+    height: 100dvh;
     width: 100vw;
 }
 
@@ -568,29 +570,130 @@ input:checked + .slider:before { transform: translateX(20px); }
 /* ==========================================================================
    Responsive
    ========================================================================== */
-.mobile-only { display: none; }
+.mobile-only { display: none !important; }
+
+/* Hide menu button on desktop since sidebar is visible */
+@media (min-width: 769px) {
+    #menu-btn { display: none !important; }
+}
 
 @media (max-width: 768px) {
-    .mobile-only { display: block; }
+    .mobile-only { display: block !important; }
+    button.mobile-only, .mobile-flex { display: flex !important; }
     
     .sidebar {
         position: fixed;
         left: -100%;
         top: 0;
         bottom: 0;
-        transition: left 0.3s ease;
-        box-shadow: var(--shadow-md);
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 4px 0 25px rgba(0,0,0,0.5);
+        z-index: 1000;
+        width: 85%;
+        max-width: 320px;
     }
     
     .sidebar.open { left: 0; }
     
-    .hero-title { font-size: 2rem; }
+    /* Navbar adjustments */
+    .navbar {
+        padding: 0.75rem 1rem;
+    }
     
-    .input-area { padding: 1rem; }
-    .message { max-width: 95%; }
-
-    .landing-title { font-size: 2.5rem; }
+    .nav-title {
+        font-size: 1.1rem;
+    }
+    
+    .glass-select {
+        padding: 0.4rem 1.5rem 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        max-width: 130px;
+    }
+    
+    /* Chat View */
+    .view-section {
+        padding: 1rem;
+    }
+    
+    .message { max-width: 95%; gap: 0.5rem; }
+    
+    .avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+    
+    .message-content {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Input Area */
+    .input-area { padding: 0.75rem; }
+    
+    .input-wrapper {
+        padding: 0.4rem;
+    }
+    
+    #user-input {
+        padding: 0.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .icon-btn { width: 36px; height: 36px; }
+    .icon-btn.primary-btn { width: 36px; height: 36px; padding: 0; }
+    
+    /* Landing Page adjustments */
+    .landing-header {
+        padding: 1rem;
+    }
+    
     .landing-nav { display: none; }
+    
+    .hero-title { font-size: 2.2rem; }
+    
+    .hero-subtitle { 
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .large-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .features-section {
+        padding: 3rem 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .premium-glass-card {
+        padding: 1.5rem;
+    }
+    
+    /* PDF Status */
+    .pdf-status {
+        bottom: 70px;
+        padding: 0.4rem 0.8rem;
+        width: 90%;
+    }
+    
+    #pdf-file-name {
+        max-width: 150px;
+    }
+    
+    /* Pre Chat View */
+    #pre-chat-view .hero-title {
+        font-size: 1.8rem !important;
+    }
+    
+    .prompts-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ==========================================================================

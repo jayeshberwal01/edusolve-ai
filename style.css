@@ -341,6 +341,21 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; line-height: 1.2; }
     border: 1px solid var(--border-color); padding: 0.5rem; text-align: left;
 }
 
+.message-content svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .message-content svg {
+    background: #f8fafc;
+}
+
 /* Actions in Bot Message */
 .message-actions {
     display: flex;

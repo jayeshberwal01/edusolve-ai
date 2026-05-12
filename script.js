@@ -350,6 +350,18 @@ document.addEventListener('DOMContentLoaded', () => {
             // Render Markdown
             let htmlContent = marked.parse(processedText);
 
+            // Post-process: Unwrap SVG from code blocks if the AI accidentally wrapped them
+            htmlContent = htmlContent.replace(/<pre><code class="language-svg">([\s\S]*?)<\/code><\/pre>/g, (match, code) => {
+                const decoder = document.createElement('div');
+                decoder.innerHTML = code;
+                return decoder.textContent;
+            });
+            htmlContent = htmlContent.replace(/<pre><code>([\s\S]*?&lt;svg[\s\S]*?&lt;\/svg&gt;[\s\S]*?)<\/code><\/pre>/g, (match, code) => {
+                const decoder = document.createElement('div');
+                decoder.innerHTML = code;
+                return decoder.textContent;
+            });
+
             // Render and Restore Math
             mathBlocks.forEach(block => {
                 try {

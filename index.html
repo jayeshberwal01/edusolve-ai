@@ -177,11 +177,7 @@
                 </div>
                 
                 <div class="nav-right">
-                    <button id="pdf-upload-btn" class="icon-btn tooltip-container" aria-label="Upload PDF">
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                        <span class="tooltip">Upload PDF</span>
-                    </button>
-                    <input type="file" id="pdf-input" accept="application/pdf" style="display: none;">
+                    <!-- PDF upload moved to input area -->
                 </div>
             </header>
 
@@ -222,6 +218,12 @@
             <!-- Input Area -->
             <footer class="input-area glass-panel">
                 <div class="input-wrapper">
+                    <button id="pdf-upload-btn" class="icon-btn tooltip-container" aria-label="Upload PDF">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        <span class="tooltip">Upload PDF</span>
+                    </button>
+                    <input type="file" id="pdf-input" accept="application/pdf" style="display: none;">
+                    
                     <button id="mic-btn" class="icon-btn tooltip-container" aria-label="Voice Input">
                         <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
                         <span class="tooltip">Voice Input</span>

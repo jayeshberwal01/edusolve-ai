@@ -341,7 +341,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; line-height: 1.2; }
     border: 1px solid var(--border-color); padding: 0.5rem; text-align: left;
 }
 
-.message-content svg {
+.message-content svg:not(.message-actions svg) {
     max-width: 100%;
     height: auto;
     display: block;
@@ -352,8 +352,20 @@ h1, h2, h3, h4, h5, h6 { font-weight: 600; line-height: 1.2; }
     border: 1px solid var(--border-color);
 }
 
-[data-theme="dark"] .message-content svg {
+[data-theme="dark"] .message-content svg:not(.message-actions svg) {
     background: #f8fafc;
+}
+
+/* Ensure action icons are not affected by large SVG styles */
+.message-actions svg {
+    display: inline-block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 14px !important;
+    height: 14px !important;
 }
 
 /* Actions in Bot Message */
